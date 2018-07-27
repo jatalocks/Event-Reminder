@@ -201,7 +201,7 @@ thead {
 """
 
 file = codecs.open('utf8html.html','w','utf-8')
-file.write(""" <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> """)
+file.write('<meta http-equiv=\"Content-Type\" content=\"text/html;charset=UTF-8\">')
 file.write(HTML_file)
 file.close()
 
