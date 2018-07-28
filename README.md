@@ -1,6 +1,6 @@
 # Personal Helper
 
-Welcome to Event-Reminder! It is a web app collaborated by Amitai Getzler (Backend) and Shachar Har-Shuv (Frontend) to practice web Developing.
+Welcome to Event-Reminder! It is a web app collaborated by Amitai Getzler (Backend) and Shachar Har-Shuv (Frontend) to practice web developing.
 In this file you will see the requirements for the project, as well as what is already implemented and what's not. 
 
 ## Apps
