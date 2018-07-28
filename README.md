@@ -29,4 +29,5 @@ In the website, it allows the user to view these parameters also adds extra func
 ### Book-Advisor
 
 Recommends you books based on your preferences and recommendations, and shows you quotes and 
--information about books you read and that you will read.
+information about books you read and that you will read. Also allows you to "Send To Kindle" by sending a MOBI file to your
+kindle email address
