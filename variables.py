@@ -3,7 +3,7 @@ tel_aviv = "106371992735156"
 usr = "amitai333@gmail.com"
 pwd = "Amitai321"
 url1 = 'https://www.facebook.com/events/discovery/?suggestion_token={"time":"today","city":"'
-url2 = url1 + haifa
+url2 = url1 + tel_aviv
 url = url2 + '"}&acontext={"source":2,"source_dashboard_filter":"discovery","action_history":"[{\"surface\":\"dashboard\",\"mechanism\":\"dashboard_home_discovery_filter\"},{\"surface\":\"discover_filter_list\",\"mechanism\":\"surface\",\"extra_data\":{\"dashboard_filter\":\"discovery\"}}]","has_source":true}'
 
 SCROLL_PAUSE_TIME = 1.5
