@@ -139,7 +139,7 @@ file.write(HTML_file)
 file.close()
 
 with codecs.open("utf8html.html", "r",'utf-8') as fin:
-    with codecs.open("events.html", "w",'utf-8') as fout:
+    with codecs.open("index.html", "w",'utf-8') as fout:
         for line in fin:
             fout.write(line.replace("&lt;","<").replace("&gt;",">"))
 
