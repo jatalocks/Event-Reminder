@@ -53,7 +53,7 @@ while True:
         time.sleep(0.5)
 
 list = []
-for i in range(2):
+for i in range(50):
     print(i)
     print("return document.getElementsByClassName('_7ty')[" + str(i) + "].href")
     try:
