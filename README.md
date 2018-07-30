@@ -14,17 +14,14 @@ The personal helper supports the following "apps":
 The Event-Reminder recieves data about relevant events to ther user:
   1. Name of event
   2. Promotion picture
-  3. Starting time
-  4. Starting date
-  5. Ending time
-  6. Ending date 
-  7. Place
-  8. Address
-  9. Category
+  3. Start and end time and date
+  4. Place / Adress
+  5. Category
 
-In the website, it allows the user to view these parameters also adds extra funcionalities:
+Features
   1. How to get there (with a moovit app map based on the user's location)
-  2. Google Calendar interfacing
+  2. Mark as "going"
+  2. Add to Google Calendar
 
 ### Book-Advisor
 
