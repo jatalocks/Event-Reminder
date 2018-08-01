@@ -1,0 +1,45 @@
+body{
+    background-color: rgb(199, 199, 199);
+}
+
+.event{
+    height: 300px;
+    border-radius: 1rem;
+
+    /*background image alignment*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    color: rgb(231, 231, 231);
+    
+}
+
+.header-container{
+    background: linear-gradient(transparent 170px, rgba(0, 0, 0, 0.8));
+    height: 100%;
+    border-radius: 1rem;
+
+    box-shadow: 3px 3px 15px black;
+
+    position: relative;
+}
+
+.event-header{
+    width: 100%;
+    padding: 0 2rem;
+    padding-bottom: 2rem;
+    position: absolute;
+    bottom: 0;
+}
+
+.event-header h2, h3{
+    margin: 0 2rem;
+}
+.event-header h2{
+    font-size: 5rem;
+}
+.event-header hr{
+    margin: 5px;
+    opacity: 0.5;
+}
