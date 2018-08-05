@@ -7,33 +7,37 @@ body{
     position: relative;
     color: rgb(231, 231, 231);
     margin: 50px 0;
+    min-height: 320px; /*we want it to be "expandabel" as we add more content*/
 }
-
-.event-inner{
-    min-height: 100px;
-
+.event-card{
     border-radius: 1rem;
-
+    height: 330px; /*static height - we don't want it to be expandable*/
+    position: absolute;
+    top: 0;
+    width: 100%;
     /*background image alignment*/
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
 
+}
+
+.event-inner{
+    height: 100%;
+    border-radius: 1rem;
     box-shadow: 3px 3px 15px black;
     overflow: hidden;
-
     position: relative; /*so I can use absolute inside*/
 }
 
-
 .event-header{
-    background: linear-gradient(transparent, rgba(0.2, 0.2, 0.2, 2) 170px);
+    background: linear-gradient(transparent, rgba(0.2, 0.2, 0.2, 2) 140px);
     margin-top: 150px;
 
     width: 100%;
     padding: 0 2rem;
     padding-top: 1.5rem;
-    padding-bottom: 1.2rem;
+    padding-bottom: 1rem;
 
     white-space: nowrap; 
     text-overflow: ellipsis;
@@ -42,6 +46,9 @@ body{
 
 .event-header .header-row{
     padding: 0 1rem;
+}
+.event-header .header-row .btn{
+    margin-top: 2px;
 }
 
 .event-header h2{
@@ -54,7 +61,7 @@ h3:lang(he), h2:lang(he){
     font-size: 24px;
     padding: 0;
     margin: 0;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1rem;
 }
 .event-header hr{
     margin: 5px;
@@ -116,16 +123,21 @@ h3:lang(he), h2:lang(he){
 .event .btn-go{
     border: none;
     color: rgb(231, 231, 231);
+    
+}
+.event .btn-go.pc-only{
     position: absolute;
     top: 50%;
     right: 0;
     transform: translateX(50%) translateY(-50%);
-
     box-shadow: 2.5px 4px 12px rgba(0, 0, 0, 0.6);
+    z-index: 1;
 }
 /* not going state*/
 .event .btn-not-going{
     background-color: rgb(0, 166, 82);
+}
+.event .btn-not-going.pc-only{
     font-size: 2.5rem;
     padding: 1.5rem 2.5rem;;
     border-radius: 50%;
@@ -136,6 +148,12 @@ h3:lang(he), h2:lang(he){
 .event .btn-not-going .txt-going{
     display: none;
 }
+.event .btn-not-going .txt-not-going{
+    display: inline;
+}
+.event .btn-going .txt-going{
+    display: inline;
+}
 .event .btn-go .txt-cancel-going{
     display: none;
 }
@@ -143,19 +161,22 @@ h3:lang(he), h2:lang(he){
 .event .btn-going{
     background-color: #e1e1e1;
     color: #464646;
+
+}
+.event .btn-going.pc-only{
     font-size: 1.5rem;
     padding: 0.5rem 2rem ;
     border-radius: 1.75rem;
     height: 3.5rem;
 }
-.event .btn-going:hover{
+.event .btn-going.pc-only:hover{
     background-color: #464646;
     color: #e1e1e1;
 }
-.event .btn-going:hover .txt-cancel-going{
+.event .btn-going.pc-only:hover .txt-cancel-going{
     display: block;
 }
-.event .btn-going:hover .txt-going{
+.event .btn-going.pc-only:hover .txt-going{
     display: none;
 }
 .event .btn-going:active{
@@ -164,7 +185,22 @@ h3:lang(he), h2:lang(he){
 .event .btn-going .txt-not-going{
     display: none;
 }
+/*phone design*/
+.event .btn-go.phone-only{
+    position: static;
+    transform: none;
+    border-radius: 0;
+    margin: 1rem -15%;
+    margin-top: 0rem;
+    width: 130%;
+}
 
+.event .btn-go.phone-only > *{ /*direct children of .btn-go.phone-only*/
+    margin: 0 auto;
+    text-align: center;
+}
+
+/*EXPANDER BUTTON*/
 .event .btn-expander{
     position: absolute;
     left: 50%;
@@ -190,7 +226,7 @@ h3:lang(he), h2:lang(he){
 }
 
 .event-header .description{
-    display: none;
+    white-space: normal;
 }
 
 .category-flag{
@@ -210,3 +246,15 @@ h3:lang(he), h2:lang(he){
     letter-spacing: 0.5rem;    
 }
 
+/*phone layout*/
+.phone-only{
+    display: none;
+}
+@media only screen and (max-width: 768px){
+    .pc-only{
+        display: none;
+    }
+    .phone-only{
+        display: inline;
+    }
+}
