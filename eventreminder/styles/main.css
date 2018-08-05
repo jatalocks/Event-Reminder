@@ -228,12 +228,19 @@ h3:lang(he), h2:lang(he){
 
 .event-header .description{
     white-space: normal;
+    display: none;
 }
 
 .category-flag{
     position: absolute;
     transform: scaleX(0.5) scaleY(0.5) translateY(-100px);
     top: 0;
+}
+.phone-only .category-flag{
+    left: 0;
+    top: 40px;
+    transform: none;
+    transform: translateX(-15px);
 }
 .category-flag-back{
     z-index: -1;
@@ -246,7 +253,11 @@ h3:lang(he), h2:lang(he){
     transform: translateX(-50%) translateY(-50%);
     letter-spacing: 0.5rem;    
 }
-
+.phone-only .category-txt{
+    font-size: 1rem;    
+    letter-spacing: normal;
+    top: 60%;
+}
 /*phone layout*/
 .phone-only{
     display: none;

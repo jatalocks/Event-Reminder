@@ -13,12 +13,9 @@ $(function() {
         });
 
         //Add Go functionality
-        console.log($(this));
         $go_btn = $(this).find(".btn-go");
-        console.log($go_btn);
         $go_btn.on("click", function(){
             $(this).toggleClass("btn-going btn-not-going");
-            console.log("clicked");
         });
     });
 });
