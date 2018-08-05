@@ -193,6 +193,7 @@ h3:lang(he), h2:lang(he){
     margin: 1rem -15%;
     margin-top: 0rem;
     width: 130%;
+    height: 2rem;
 }
 
 .event .btn-go.phone-only > *{ /*direct children of .btn-go.phone-only*/
@@ -256,5 +257,23 @@ h3:lang(he), h2:lang(he){
     }
     .phone-only{
         display: inline;
+    }
+
+    body{
+        font-size: 16px;
+    }
+    .event-header{
+        padding-right: 0;
+        padding-left: 0;
+    }
+    .event-header h2{
+        font-size:  2rem;
+    }
+    .event-header h3{
+        font-size:  1.2rem;
+    }
+    .event-header .btn{
+        padding-top: 0;
+        padding-bottom: 0;
     }
 }
