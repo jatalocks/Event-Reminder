@@ -1,6 +1,8 @@
+<% for (var i = 0; i < events.length; i++) 
+{ %> 
 <div class="event">
-    <div class="event-card" style="background-image: url('<%= image %>')">
-      <button class="btn btn-success btn-go pc-only <% if (going) { %> btn-going <% } else { %> btn-not-going <%} %>">
+    <div class="event-card" style="background-image: url('<%= events[i].image %>')">
+      <button class="btn btn-success btn-go pc-only <% if (events[i].going) { %> btn-going <% } else { %> btn-not-going <%} %>">
           <!--this code appears twice! Maybe we should import it using php-->
           <div class="txt-going">
               <i class="fa fa-check mr-2" style="font-weight: 50" ></i>
@@ -17,20 +19,20 @@
     </div>
     <div class="event-inner" >
       <div class="hours-container">
-          <div class="hours"><%= hours.start %> - <%= hours.finish %></div>
+          <div class="hours"><%= events[i].hours.start %> - <%= events[i].hours.finish %></div>
       </div>
       <div class="date">
-          <div class="day"><%= date.day %></div>
-          <div class="month"><%= date.month %></div>
+          <div class="day"><%= events[i].date.day %></div>
+          <div class="month"><%= events[i].date.month %></div>
       </div>
       <div class="event-header">
         <div class="header-row">
-            <h2 lang="<%=nameLgn %>" class="text-truncate"><%=name %></h2>
+            <h2 lang="<%=events[i].nameLgn %>" class="text-truncate"><%=events[i].name %></h2>
         </div>
         <hr>
         <div class="header-row">
             <button class="float-right btn btn-outline-light btn-sm float-right">Directions</button>
-            <h3 lang="<%=locationLgn%>" class="text-truncate"><%= location%></h3>
+            <h3 lang="<%=events[i].locationLgn%>" class="text-truncate"><%= events[i].location%></h3>
         </div>
         <div class="header-row">
             <div class="description">
@@ -39,10 +41,10 @@
                 Here is a new line.
                 Maybe there is a <a href="#">link</a> in here.</p>
                 <p>Come to the event! It will be fun.</p> -->
-                <%= description %>
+                <%= events[i].description %>
             </div>
         </div>
-        <button class="btn btn-go <% if (going) { %> btn-going <% } else { %> btn-not-going <%} %> phone-only">
+        <button class="btn btn-go <% if (events[i].going) { %> btn-going <% } else { %> btn-not-going <%} %> phone-only">
           <!--this code appears twice! Maybe we should import it using php-->
           <div class="row txt-going">
               <i class="fa fa-check mr-2" style="font-weight: 50" ></i>
@@ -87,13 +89,13 @@
             <g transform="translate(-48.115348,-121.5984)">
               <g transform="matrix(0.9161336,-0.00471102,0.1481171,1.0907822,0,0)">
                 <path
-                    style="fill:<%=categoryColor %>;filter: url('#dropshadow')"
+                    style="fill:<%=events[i].categoryColor %>;filter: url('#dropshadow')"
                     d="m 203.74805,132.64258 c -11.18761,0 -20.23896,7.88082 -20.6543,17.80859 h -0.0195 v 0.71094 78.85156 l 106.13867,45.5625 106.14063,-45.5625 v -58.08398 -2.2461 -19.42187 c 0,-9.39284 6.972,-16.96127 15.68554,-17.12305 -1.51206,-0.31322 -3.08178,-0.49609 -4.70312,-0.49609 z"
                     transform="matrix(0.28860279,0.00124646,-0.03918932,0.24239368,-12.886188,79.703623)" />
               </g>
             </g>
           </svg> 
-          <span class="category-txt"><%= category %></span>
+          <span class="category-txt"><%= events[i].category %></span>
       </div>
       <div class="category-flag category-flag-back">
           <svg 
@@ -103,7 +105,7 @@
           <g transform="translate(-48.115348,-121.5984)">
             <g transform="matrix(0.9161336,-0.00471102,0.1481171,1.0907822,0,0)">
               <path
-                style="fill:<%=categoryColor %>;"
+                style="fill:<%=events[i].categoryColor %>;"
                 d="m 411.07227,133.13867 c -8.84582,0 -15.9668,7.64385 -15.9668,17.13867 v 18.16407 h 31.93359 v -18.16407 c 0,-9.49482 -7.12098,-17.13867 -15.96679,-17.13867 z"
                 transform="matrix(0.28860279,0.00124646,-0.03918932,0.24239368,-12.886188,79.703623)" />
             </g>
@@ -135,12 +137,12 @@
           <g transform="translate(-61.803984,-126.20073)">
             <g  transform="matrix(0.9161336,-0.00471102,0.1481171,1.0907822,0,0)">
               <path
-                  style="fill:<%= categoryColor %>;"
+                  style="fill:<%= events[i].categoryColor %>;"
                   d="m 47.425948,123.92546 c -0.166598,1.03043 1.973043,1.87393 4.832041,1.92456 l -2.63e-4,0.002 0.205179,8.8e-4 24.488398,0.10578 4.606823,-3.48574 -3.474056,-3.52064 -18.494816,-0.0799 -0.64825,-0.003 -5.605205,-0.0242 c -2.710799,-0.0117 -4.791249,-0.66329 -4.708184,-1.46606 -0.112913,0.13888 -0.189064,0.28324 -0.213207,0.43257 z" />
             </g>
           </g>
           </svg>
-          <span class="category-txt"><%= category %></span>
+          <span class="category-txt"><%= events[i].category %></span>
       </div>
       <div class="category-flag category-flag-back">
           <svg
@@ -152,7 +154,7 @@
          <g transform="translate(-61.803984,-126.20073)">
            <g transform="matrix(0.9161336,-0.00471102,0.1481171,1.0907822,0,0)">
              <path
-                style="fill:<%= categoryColor %>;fill-opacity:1;stroke-width:0.15411586"
+                style="fill:<%= events[i].categoryColor %>;fill-opacity:1;stroke-width:0.15411586"
                 d="m 48.627615,117.37916 c -0.131725,0.81475 1.968272,1.48015 4.708503,1.49199 l 5.242197,0.0226 0.47553,-2.94124 -5.242198,-0.0226 c -2.740227,-0.0118 -5.052307,0.63452 -5.184032,1.44926 z" />
            </g>
          </g>
@@ -161,3 +163,4 @@
     </span>
 
 </div>
+<%}%>
