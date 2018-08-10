@@ -12,7 +12,7 @@
     <!--custom CSS-->
     <link rel="stylesheet" href="styles/main.css">
 
-    <title>New Site</title>
+    <title>Event</title>
   </head>
 
   <body>
@@ -22,49 +22,20 @@
 
       <h1>Event Reminder</h1>
       
-      <div class="event">
-          <div class="event-inner" style="background-image: url('img/demo/snowpark.jpg')">
-            <div class="hours-container">
-                <div class="hours">10:00 - 18:00</div>
-            </div>
-            <div class="date">
-                <div class="day">23</div>
-                <div class="month">AUG</div>
-            </div>
-            <div class="event-header">
-              <div class="header-row">
-                  <h2 lang="he" class="text-truncate">פארק השלג נמל תל אביב</h2>
-              </div>
-              <hr>
-              <div class="header-row">
-                  <button lang="en" class="float-right btn btn-outline-light btn-sm float-right">Directions</button>
-                  <h3 class="text-truncate">Tel Aviv Israel 63508 TelAviv Israel</h3>
-              </div>
-              <div class="header-row">
-                  <div class="description">
-                    <p>
-                      These are details about the event. Here you can see more information about the event. <br>
-                      Here is a new line.
-                      Maybe there is a <a href="#">link</a> in here.</p>
-                      <p>Come to the event! It will be fun.</p>
-                  </div>
-              </div>
-            </div>
-          </div>
-          <button class="btn btn-success btn-go">Go!</button>
-          <button class="btn btn-expander">
-            <div class="row">
-                <i class="fa fa-angle-up" style="font-size: 24px; margin-right: 8px;" ></i>
-                Show Less
-            </div>
-            
-          </button>
-
-      </div>
+      <div id="events"></div>
 
       <h2>Notes to myself: </h2>
-      No notes yet! Keep doing a good job.
       <ul>
+        <li>Animate icon rotation on expand button. </li>
+        <li>"Show More" button is working on all instances of event.</li>
+        <li>Open a dialog box when clicking "GO"</li>
+        <li>Open background image when clicking. </li>
+      </ul>
+
+      <hr>
+      <h4>for Phone Layout</h4>
+      <ul>
+        <li>Horizontal flag doesn't have shadow. </li>
       </ul>
     </div>
 
@@ -76,8 +47,10 @@
     
     <!--JQuery-->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
-
-    <!--Custom Script-->
+    <!--ejs-->
+    <script src="scripts/ejs.js"></script>
+    <!--Custom Scripts-->
+    <script src="scripts/events.js"></script>
     <script src="scripts/main.js"></script>
   </body>
 
