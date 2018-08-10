@@ -91,15 +91,22 @@ for link in list:
     except:
         place = "-"
     try:
+        desc = driver.execute_script(getDesc)
+    except:
+        desc = "-"
+    try:
         img = driver.execute_script(getImage)
-        img = "<img src=" + "\"" + img + "\"" + "></img>"
+        # img = "<img src=" + "\"" + img + "\"" + "></img>"
+        img = img
     except:
         try:
             img = driver.execute_script(getImage2)
-            img = "<img src=" + "\"" + img + "\"" + "></img>"
+            # img = "<img src=" + "\"" + img + "\"" + "></img>"
+            img = img
         except:
             img = "-"
-    event = [name,img,start,end,addr,place]
+    print(link);
+    event = [name,img,start,end,addr,place,link,desc]
     allEvents.append(event)
 
 print("Total Events: " + str(len(allEvents)))
@@ -109,7 +116,7 @@ f.write("")
 f.close()
 
 with open('csvfile.csv','wb') as file:
-    file.write(b"Name,Image,Start Time,End Time,Address,Place")
+    file.write(b"Name,Image,Start Time,End Time,Address,Place,Link,Description")
     file.write(b"\n")
     for event in allEvents:
         newEvent = []
@@ -122,7 +129,7 @@ with open('csvfile.csv','wb') as file:
                     text = text.replace(",","")
                 newEvent.append(text)
         file.write(bytes(newEvent[0], encoding = "utf-8") + b"," + bytes(newEvent[1], encoding = "utf-8") + b"," + bytes(newEvent[2], encoding = "utf-8") + b"," + bytes(newEvent[3], encoding = "utf-8")
-         + b"," + bytes(newEvent[4], encoding = "utf-8") + b"," + bytes(newEvent[5], encoding = "utf-8"))
+         + b"," + bytes(newEvent[4], encoding = "utf-8") + b"," + bytes(newEvent[5], encoding = "utf-8") + b"," + bytes(newEvent[6], encoding = "utf-8") + b"," + bytes(newEvent[7], encoding = "utf-8"))
         file.write(b'\n')
 
 file.close()

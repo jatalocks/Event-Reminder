@@ -3,7 +3,7 @@ tel_aviv = "106371992735156"
 usr = "amitai333@gmail.com"
 pwd = "Amitai321"
 url1 = 'https://www.facebook.com/events/discovery/?suggestion_token={"time":"today","city":"'
-url2 = url1 + tel_aviv
+url2 = url1 + haifa
 url = url2 + '"}&acontext={"source":2,"source_dashboard_filter":"discovery","action_history":"[{\"surface\":\"dashboard\",\"mechanism\":\"dashboard_home_discovery_filter\"},{\"surface\":\"discover_filter_list\",\"mechanism\":\"surface\",\"extra_data\":{\"dashboard_filter\":\"discovery\"}}]","has_source":true}'
 
 SCROLL_PAUSE_TIME = 1.5
@@ -16,6 +16,7 @@ getAddr = """ return document.getElementsByClassName("_5xhp fsm fwn fcg")[1].inn
 getPlace = """ return document.getElementsByClassName("_5xhk")[1].text """
 getImage = """ return document.getElementsByClassName("uiScaledImageContainer _3ojl")[0].childNodes[0].src """
 getImage2 = """ return document.getElementsByClassName("_m54 _1jto _3htz hidden_elem")[0].childNodes[0].src """
+getDesc = """ return document.getElementsByClassName("_63ew")[0].textContent """
 
 getID = """ return document.getElementsByClassName("_7ty")[0].href """
 last = """ return document.body.scrollHeight """
