@@ -115,7 +115,7 @@
         $.ajax(settings).done(function (response) {
             console.log(response);
 
-                    for (let i = 0; i < response.length; i++) 
+                    for (let i = 0; i < response.length; i++)
                     {
                         var col = $("<div></div>").addClass("col-lg-3 col-md-4 col-sm-6 portfolio-item");   // Create with jQuery
 
@@ -131,7 +131,7 @@
 
                         card.append(cardbody);
                         col.append(card);
-                        $("#row").append(col);      // Append the new elements 
+                        $("#row").append(col);      // Append the new elements
                     }
 
         });
