@@ -22,8 +22,6 @@ $(function() {
         var fData = []; //the formatted data
 
         for (var i = 0; i < 2; i++){
-            console.log(data[i]);
-
             event = data[i];
             //find out the langues
             var _nameLgn = "he"
@@ -52,19 +50,14 @@ $(function() {
 
         //render formatted content to page
         var rendered = new EJS({url: "events.ejs"}).render({events: fData});
-        console.log("loading events");
         $("#events").html(rendered);
 
         //remove "loading sign"
-        console.log("toggle loading1");
         $("#loading").addClass("invisible");
-        console.log("toggle loading");
 
     }
 
     function InitializeFunctionality(){
-        console.log("Cards loaded");
-
         $(".event").each(function (index) {
             //Add expand functionality
             $expand_btn = $(this).find(".btn-expander");
