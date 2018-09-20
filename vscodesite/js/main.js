@@ -1,6 +1,7 @@
 $(function() {
     console.log( "Page Loaded" );
 
+    //front-end functionality 
     $(".event").each(function (index) {
         //Add expand functionality
         $expand_btn = $(this).find(".btn-expander");

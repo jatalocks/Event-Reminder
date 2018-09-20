@@ -16,20 +16,31 @@
   </head>
 
   <body>
-
-
     <div class="container">
 
       <h1>Event Reminder</h1>
       
-      <div id="events"></div>
+      <div id="loading" class="invisible">
+        <div class="loading-icon"></div>
+        Loading Events . . . 
+      </div>
+      <div id="events"></div> <!--Here the events will be loaded-->
 
       <h2>Notes to myself: </h2>
       <ul>
+        <li>"Show More" button is working only only on last instance of event.</li>
+        <li>analize strings to create the information in a desired format.</li>
         <li>Animate icon rotation on expand button. </li>
-        <li>"Show More" button is working on all instances of event.</li>
         <li>Open a dialog box when clicking "GO"</li>
         <li>Open background image when clicking. </li>
+      </ul>
+      <h2>Request for backend</h2>
+      <ul>
+        <li>Add "Go" "unGo" functionality</li>
+      </ul>
+      <h2>More Ideas</h2>
+      <ul>
+        <li>Analize the name to split to "Place" and "Date" (Probably should be back-end) </li>
       </ul>
 
       <hr>
@@ -50,7 +61,7 @@
     <!--ejs-->
     <script src="scripts/ejs.js"></script>
     <!--Custom Scripts-->
-    <script src="scripts/events.js"></script>
+    <!-- <script src="scripts/events.js"></script> -->
     <script src="scripts/main.js"></script>
   </body>
 
