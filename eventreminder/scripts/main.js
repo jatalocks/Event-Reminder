@@ -6,7 +6,7 @@ $(function() {
     var settings = {
     "async": true,
     "crossDomain": true,
-    url: "https://eventreminder-6487.restdb.io/rest/eventtable",
+    url: "https://eventreminder-6487.restdb.io/rest/eventtable?q={}&max=5",
     type: "GET",
     "headers": {
         "content-type": "application/json",
@@ -19,6 +19,8 @@ $(function() {
     $.ajax(settings);
 
     function loadContent(data){
+        console.log(data);
+        
         var fData = []; //the formatted data
 
         for (var i = 0; i < 2; i++){
@@ -53,7 +55,6 @@ $(function() {
                     input = input.replace(" AM", "");
                 }
                 if (input.includes(":")){
-                    console.log(":");
                     if (!PM) return input;
                     else{
                         input = input.split(":");
@@ -151,10 +152,24 @@ $(function() {
     
             //Add Go functionality
             $go_btn = $(this).find(".btn-go");
-            $go_btn.on("click", function(){
-                
-                $(this).toggleClass("btn-going btn-not-going");
+            $go_btn.click(function(){
+                //open the dialog window
+                $("#go-dialog").css("display", "block");
+                //$(this).toggleClass("btn-going btn-not-going");
             });
+
+            //Add close button functionality
+            $close_btn = $(".close");
+            $close_btn.click(function(){
+                $close_btn.parent().parent().css("display", "none");
+            });
+            $("#go-dialog").click( function(event){
+                $(this).css("display", "none");
+            });
+            $(".go-dialog-content").click(function(event){
+                event.stopPropagation();
+            })
+
         });
 
     }
