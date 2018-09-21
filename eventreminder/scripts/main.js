@@ -22,14 +22,92 @@ $(function() {
         var fData = []; //the formatted data
 
         for (var i = 0; i < 2; i++){
+            console.log(data[i]);
             event = data[i];
             //find out the langues
             var _nameLgn = "he"
             var _locationLgn = "en";
+            var _descriptionLgn = "he";
 
-            //decipher date
+            //parse date
             var _day;
             var _month;
+            var date = event.Date;
+            date = date.split("-");
+            monthNum = parseInt(date[1]);
+            _day = date[2];
+
+            //parse hours
+            var _start = parseHour(event["Start Time"]);
+            var _end = parseHour(event["End Time"]);
+
+            function parseHour(input){
+                if (input == "-"){
+                    return "??"; 
+                }
+                var PM = input.includes("PM");
+                if (PM){
+                    input = input.replace(" PM", "");
+                }
+                else{
+                    input = input.replace(" AM", "");
+                }
+                if (input.includes(":")){
+                    console.log(":");
+                    if (!PM) return input;
+                    else{
+                        input = input.split(":");
+                        return (parseInt(input[0]) + 12 + ":" + input[1]);
+                    }
+                }
+                else{
+                    if (PM)
+                        input = parseInt(input) + 12;
+                    
+                    return input + ":00"; 
+                }
+
+            }
+
+            switch(monthNum){
+                case 1:
+                    _month = "JAN";
+                    break;
+                case 2:
+                    _month = "FAB";
+                    break;
+                case 3:
+                    _month = "MAR";
+                    break;                    
+                case 4:
+                    _month = "APR";
+                    break;       
+                case 5:
+                    _month = "MAY";
+                    break;       
+                case 6:
+                    _month = "JUN";
+                    break;       
+                case 7:
+                    _month = "JUL";
+                    break;
+                case 8:
+                    _month = "AUG";
+                    break;       
+                case 9:
+                    _month = "SEP";
+                    break;       
+                case 10:
+                    _month = "OCT";
+                    break;       
+                case 11:
+                    _month = "NOV";
+                    break;       
+                case 12:
+                    _month = "DEC";
+                    break;                    
+                }
+
 
             //
             fData[i] = 
@@ -38,10 +116,11 @@ $(function() {
                 nameLgn: _nameLgn,
                 location: event.Address,
                 locationLgn: _locationLgn,
-                date: {day: 10, month: "SEP"}, 
-                hours: {start: "10:30", finish: "18:30"},
-                description: "This is the event's description. <br> Here is another line. ",
-                category: "Parks!", 
+                date: {day: _day, month: _month}, 
+                hours: {start: _start, finish: _end},
+                description: event.Description,
+                descriptionLgn: _descriptionLgn,
+                category: "No-Category", 
                 categoryColor: "#4286f4",
                 image: event.Image, 
                 going: false
@@ -73,6 +152,7 @@ $(function() {
             //Add Go functionality
             $go_btn = $(this).find(".btn-go");
             $go_btn.on("click", function(){
+                
                 $(this).toggleClass("btn-going btn-not-going");
             });
         });

@@ -79,8 +79,9 @@ body{
 .event-header h2{
     font-size: 43px;
 }
-h3:lang(he), h2:lang(he){
+:lang(he){
     direction: rtl;
+    text-align: right;
 }
 .event-header h3{
     font-size: 24px;
@@ -276,7 +277,8 @@ h3:lang(he), h2:lang(he){
     left: 45%;
     font-size: 2.5rem;
     transform: translateX(-50%) translateY(-50%);
-    letter-spacing: 0.5rem;    
+    width: 200px;
+        
 }
 .phone-only .category-txt{
     font-size: 1rem;    

@@ -35,7 +35,7 @@
             <h3 lang="<%=events[i].locationLgn%>" class="text-truncate"><%= events[i].location%></h3>
         </div>
         <div class="header-row">
-            <div class="description">
+            <div class="description" lang="<%=events[i].descriptionLgn %>">
               <!-- <p>
                 These are details about the event. Here you can see more information about the event. <br>
                 Here is a new line.
@@ -95,7 +95,7 @@
               </g>
             </g>
           </svg> 
-          <span class="category-txt"><%= events[i].category %></span>
+          <span class="category-txt text-truncate"><%= events[i].category %></span>
       </div>
       <div class="category-flag category-flag-back">
           <svg 
