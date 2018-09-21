@@ -154,6 +154,7 @@ $(function() {
             $go_btn = $(this).find(".btn-go");
             $go_btn.click(function(){
                 //open the dialog window
+                $("#go-dialog").find("#event-name").html("New Event name");
                 $("#go-dialog").css("display", "block");
                 //$(this).toggleClass("btn-going btn-not-going");
             });

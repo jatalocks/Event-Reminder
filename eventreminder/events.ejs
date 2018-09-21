@@ -1,6 +1,6 @@
 <% for (var i = 0; i < events.length; i++) 
 { %> 
-<div class="event">
+<div class="event" id="<%= events[i]._id %>">
     <div class="event-card" style="background-image: url('<%= events[i].image %>')">
       <button class="btn btn-success btn-go pc-only <% if (events[i].going) { %> btn-going <% } else { %> btn-not-going <%} %>">
           <!--this code appears twice! Maybe we should import it using php-->
