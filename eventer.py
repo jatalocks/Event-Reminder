@@ -91,11 +91,19 @@ def getEvents(num,city):
             try:
                 start = driver.execute_script(getStartingTime)
             except:
-                start = "-"
+                try:
+                    start = driver.execute_script(getStartingTime2)
+                    start = re.findall("(\d{1,2} [A|P]M|\d{1,2}:\d{1,2} [A|P]M)",start)[0]
+                except:
+                    start = "-"
             try:
                 end = driver.execute_script(getEndingTime)
             except:
-                end = "-"
+                try:
+                    end = driver.execute_script(getEndingTime2)
+                    end = re.findall("(\d{1,2} [A|P]M|\d{1,2}:\d{1,2} [A|P]M)",end)[1]
+                except:
+                    end = "-"
             try:
                 addr = driver.execute_script(getAddr)
             except:
@@ -120,13 +128,14 @@ def getEvents(num,city):
                 except:
                     img = "-"
             print(link);
-            event = [name,img,start,end,days[day],addr,place,city,link,desc]
+            going = "false"
+            event = [name,img,start,end,days[day],addr,place,city,link,desc,going]
             allEvents.append(event)
 
         print("Total Events: " + str(len(allEvents)))
 
         with open('csvfile.csv','ab') as file:
-            file.write(b"Name,Image,Start Time,End Time,Date,Address,Place,City,Link,Description")
+            file.write(b"Name,Image,Start Time,End Time,Date,Address,Place,City,Link,Description,Going")
             file.write(b"\n")
             for event in allEvents:
                 newEvent = []
@@ -145,7 +154,8 @@ def getEvents(num,city):
                   + b"," + bytes(newEvent[6], encoding = "utf-8")
                    + b"," + bytes(newEvent[7], encoding = "utf-8")
                     + b"," + bytes(newEvent[8], encoding = "utf-8")
-                     + b"," + bytes(newEvent[9], encoding = "utf-8"))
+                     + b"," + bytes(newEvent[9], encoding = "utf-8")
+                     + b"," + bytes(newEvent[10], encoding = "utf-8"))
                 file.write(b'\n')
 
         file.close()
@@ -157,13 +167,13 @@ def main():
     f.write("")
     f.close()
 
-    getEvents(8,"haifa")
-    getEvents(8,"tel_aviv")
+    getEvents(3,"haifa")
+    #getEvents(3,"tel_aviv")
     #driver.close()
 
     csvfile = open('csvfile.csv', 'r',encoding="utf-8")
 
-    fieldnames = ("Name","Image","Start Time","End Time","Date","Address","Place","City","Link","Description")
+    fieldnames = ("Name","Image","Start Time","End Time","Date","Address","Place","City","Link","Description","Going")
 
     reader = csv.DictReader(csvfile, fieldnames)
 
