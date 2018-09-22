@@ -6,7 +6,7 @@ In this file you will see the requirements for the project, as well as what is a
 ## Apps
 
 The personal helper supports the following "apps": 
-1. Event-Reminder and organaizer
+1. Event-Reminder and Organaizer
 2. Book-Advisor
 
 ### Event-Reminder
@@ -16,7 +16,6 @@ The Event-Reminder recieves data about relevant events to ther user:
   2. Promotion picture
   3. Start and end time and date
   4. Place / Adress
-  5. Category
 
 Features
   1. How to get there (with a moovit app map based on the user's location)
