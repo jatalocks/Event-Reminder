@@ -27,7 +27,7 @@
       <div id="events"></div> <!--Here the events will be loaded-->
 
       <!--Go to event Dialog box-->
-      <div id="go-dialog" style="display: block">
+      <div id="go-dialog" style="display: none" data-target="">
         <div class="go-dialog-content">
           <span class="close">&times;</span>
           <div class="row" style="margin-top: 10px;">
@@ -37,8 +37,8 @@
             The event will be marked as "going", and you can cancel later any time.
           </div>
           <div class="row" style="margin-top: 10px">
-            <button class="btn btn-success">Go</button>
-            <button class="btn btn-secondary">Cancel</button>
+            <button class="btn btn-success btn-go" >Go</button>
+            <button class="btn btn-secondary btn-cancel">Cancel</button>
           </div>
           
         </div>
@@ -46,13 +46,21 @@
 
       <h2>Notes to myself: </h2>
       <ul>
-        <li>"Show More" button is working only only on last instance of event.</li>
-        <li>analize strings to create the information in a desired format.</li>
-        <li>Animate icon rotation on expand button. </li>
-        <li>Open a dialog box when clicking "GO"</li>
+        <li>Language Detection</li>
+        <li>Animations
+          <ul>
+            <li>Open/close Dialog</li>
+            <li>Events cards apearing</li>
+            <li>responsiveness of hovering an event card</li>
+            <li>Go button animation transformation</li>
+            <li>Go button resize when hover? </li>
+          </ul>
+        </li>
         <li>Open background image when clicking. </li>
         <li>Line breaks in descriptions</li>
         <li>if end time is "undefined" write only start time</li>
+        <li>Go-Dialog for phone layout</li>
+        <li>Filtering interface</li>
       </ul>
       <h2>More Ideas</h2>
       <ul>
