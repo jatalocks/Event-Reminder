@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!--Icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--custom CSS-->
+    <link rel="stylesheet" href="styles/main.css">
+
+    <title>Event</title>
+  </head>
+
+  <body>
+    <div class="container">
+
+      <h1>Event Reminder</h1>
+      
+      <div id="loading" class="">
+        <div class="loading-icon"></div>
+        Loading Events . . . 
+      </div>
+      <div id="events"></div> <!--Here the events will be loaded-->
+
+      <!--Go to event Dialog box-->
+      <div id="go-dialog" style="display: block">
+        <div class="go-dialog-content">
+          <span class="close">&times;</span>
+          <div class="row" style="margin-top: 10px;">
+            <h4>Go to: <span id="event-name">Event Name</span></h4>
+          </div>
+          <div class="row">
+            The event will be marked as "going", and you can cancel later any time.
+          </div>
+          <div class="row" style="margin-top: 10px">
+            <button class="btn btn-success">Go</button>
+            <button class="btn btn-secondary">Cancel</button>
+          </div>
+          
+        </div>
+      </div>
+
+      <h2>Notes to myself: </h2>
+      <ul>
+        <li>"Show More" button is working only only on last instance of event.</li>
+        <li>analize strings to create the information in a desired format.</li>
+        <li>Animate icon rotation on expand button. </li>
+        <li>Open a dialog box when clicking "GO"</li>
+        <li>Open background image when clicking. </li>
+        <li>Line breaks in descriptions</li>
+        <li>if end time is "undefined" write only start time</li>
+      </ul>
+      <h2>More Ideas</h2>
+      <ul>
+        <li>Analize the name to split to "Place" and "Date" (Probably should be back-end) </li>
+      </ul>
+
+      <hr>
+      <h4>for Phone Layout</h4>
+      <ul>
+        <li>Horizontal flag doesn't have shadow. </li>
+      </ul>
+    </div>
+
+    <!-- JavaScript for Bootstrap -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    <!--JQuery-->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+    <!--ejs-->
+    <script src="scripts/ejs.js"></script>
+    <!--Custom Scripts-->
+    <!-- <script src="scripts/events.js"></script> -->
+    <script src="scripts/main.js"></script>
+  </body>
+
+
+</html>
