@@ -67,9 +67,8 @@ def getEvents(num,city):
                 time.sleep(0.5)
 
         list = []
-        for i in range(50):
-            print(i)
-            print("return document.getElementsByClassName('_7ty')[" + str(i) + "].href")
+        for i in range(TOTAL_EVENTS_PER_PAGE):
+            print("Fetching Event " + str(i) + " Address")
             try:
                 getID = "return document.getElementsByClassName('_7ty')[" + str(i) + "].href"
                 temp = driver.execute_script(getID)
@@ -127,14 +126,13 @@ def getEvents(num,city):
                     img = img
                 except:
                     img = "-"
-            print(link);
             going = "false"
             event = [name,img,start,end,days[day],addr,place,city,link,desc,going]
             allEvents.append(event)
 
         print("Total Events: " + str(len(allEvents)))
 
-        with open('csvfile.csv','ab') as file:
+        with open(os.path.join(os.path.dirname(__file__), 'csvfile.csv'),'ab') as file:
             file.write(b"Name,Image,Start Time,End Time,Date,Address,Place,City,Link,Description,Going")
             file.write(b"\n")
             for event in allEvents:
@@ -163,7 +161,7 @@ def getEvents(num,city):
 
 def main():
     # Erase Old Data
-    f = open("csvfile.csv", "w")
+    f = open(os.path.join(os.path.dirname(__file__), 'csvfile.csv'), "w")
     f.write("")
     f.close()
 
@@ -171,7 +169,7 @@ def main():
     #getEvents(3,"tel_aviv")
     #driver.close()
 
-    csvfile = open('csvfile.csv', 'r',encoding="utf-8")
+    csvfile = open(os.path.join(os.path.dirname(__file__), 'csvfile.csv'), 'r',encoding="utf-8")
 
     fieldnames = ("Name","Image","Start Time","End Time","Date","Address","Place","City","Link","Description","Going")
 
@@ -180,7 +178,7 @@ def main():
     out = json.dumps( [ row for row in reader ] )
     print("JSON parsed!")
     # Save the JSON
-    f = open('file.json', 'w')
+    f = open(os.path.join(os.path.dirname(__file__), "file.json"), 'w')
     f.write(out)
     print("JSON saved!")
 
@@ -194,36 +192,43 @@ def main():
 
     response = requests.request("DELETE", 'https://eventreminder-6487.restdb.io/rest/eventtable/*?q={"match_all": {}}', headers=headers)
 
+    print("Deleted Previous Events")
     print(response.text)
 
-    response = requests.request("POST", url, data=open('file.json','rb'), headers=headers)
-    print(response.text)
+    #response = requests.request("POST", url, data=open(os.path.join(os.path.dirname(__file__), "file.json"),'rb'), headers=headers)
+    #print("Posted JSON Number 1")
+    #print(response.text)
 
-    list = glob.glob('file.json_*.json')
+    list = glob.glob(os.path.join(os.path.dirname(__file__), 'file.json_*.json'))
     for jfile in (list):
         os.remove(jfile)
 
-    size = (os.path.getsize('file.json') / 1000000)
+    size = (os.path.getsize(os.path.join(os.path.dirname(__file__), "file.json")) / 1000000)
 
     if (size > 1):
-        with open("file.json",'r') as infile:
+        with open(os.path.join(os.path.dirname(__file__), "file.json"),'r') as infile:
             o = json.load(infile)
             chunkSize = 200
             for i in range(0, len(o), chunkSize):
-                with open("file.json" + '_' + str(i//chunkSize) + '.json', 'w') as outfile:
+                with open(os.path.join(os.path.dirname(__file__), "file.json") + '_' + str(i//chunkSize) + '.json', 'w') as outfile:
                     json.dump(o[i:i+chunkSize], outfile)
-        list = glob.glob('file.json_*.json')
+        list = glob.glob(os.path.join(os.path.dirname(__file__), 'file.json_*.json'))
         print(list)
         for jfile in (list):
             print(jfile)
             response = requests.request("POST", url, data=open(jfile,'rb'), headers=headers)
-            print(response.text)
+            print("Posted Another JSON")
+            #print(response.text)
     else:
-        response = requests.request("POST", url, data=open('file.json','rb'), headers=headers)
-        print(response.text)
+        response = requests.request("POST", url, data=open(os.path.join(os.path.dirname(__file__), "file.json"),'rb'), headers=headers)
+        print("Posted JSON Number 1")
+        #print(response.text)
 
     response = requests.request("DELETE", 'https://eventreminder-6487.restdb.io/rest/eventtable/*?q={"Name": "Name"}', headers=headers)
+    print("Deleted Rogue Events")
     print(response.text)
+
+    print("Done")
 
 if __name__ == "__main__":
     main()

@@ -3,11 +3,14 @@ from datetime import datetime, timedelta
 usr = "amitai333@gmail.com"
 pwd = "Amitai321"
 
+TOTAL_EVENTS_PER_PAGE = 50
 SCROLL_PAUSE_TIME = 1.5
 prefs = {"profile.default_content_setting_values.notifications" : 2}
 getName = """ return document.getElementById("pageTitle").text """
 getStartingTime = """ return document.getElementsByClassName("_2ycp _5xhk")[0].children[1].textContent """
+getStartingTime2 = """ return document.getElementsByClassName("_2ycp _5xhk")[0].textContent """
 getEndingTime = """ return document.getElementsByClassName("_2ycp _5xhk")[0].children[2].textContent """
+getEndingTime2 = """ return document.getElementsByClassName("_2ycp _5xhk")[0].textContent """
 getAddr = """ return document.getElementsByClassName("_5xhp fsm fwn fcg")[1].innerText """
 getPlace = """ return document.getElementsByClassName("_5xhk")[1].text """
 getImage = """ return document.getElementsByClassName("uiScaledImageContainer _3ojl")[0].childNodes[0].src """
