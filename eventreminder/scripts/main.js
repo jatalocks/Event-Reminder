@@ -113,6 +113,7 @@ $(function() {
             //
             fData[i] = 
             {
+                id: event._id,
                 name: event.Name,
                 nameLgn: _nameLgn,
                 location: event.Address,
@@ -153,10 +154,20 @@ $(function() {
             //Add Go functionality
             $go_btn = $(this).find(".btn-go");
             $go_btn.click(function(){
+                if ($(this).hasClass("btn-going")) {
+                    $(this).toggleClass("btn-going btn-not-going");
+                    return;
+                }
                 //open the dialog window
-                $("#go-dialog").find("#event-name").html("New Event name");
-                $("#go-dialog").css("display", "block");
-                //$(this).toggleClass("btn-going btn-not-going");
+                //get the event name
+                $event = $(this).closest(".event");
+                var name = $event.find(".name").html();
+                $go_dialog = $("#go-dialog");
+                $go_dialog.find("#event-name").html(name);
+                //get the event id
+                var id = $event.attr("id");
+                $go_dialog.attr("data-target", id);
+                $go_dialog.css("display", "block");
             });
 
             //Add close button functionality
@@ -164,16 +175,48 @@ $(function() {
             $close_btn.click(function(){
                 $close_btn.parent().parent().css("display", "none");
             });
-            $("#go-dialog").click( function(event){
-                $(this).css("display", "none");
-            });
-            $(".go-dialog-content").click(function(event){
-                event.stopPropagation();
-            })
-
+            
         });
 
+        //go-dialog
+        $go_dialog = $("#go-dialog"); 
+        $go_dialog.click( function(event){
+            $(this).css("display", "none");
+        });
+        $go_dialog.find(".btn-cancel").click(function(){
+            $go_dialog.css("display", "none");
+        });
+        $go_dialog.find(".btn-go").click(function(){
+            //get id
+            var id = $(this).closest("#go-dialog").attr("data-target");
+            $("#" + id).find(".btn-go").toggleClass("btn-going btn-not-going");
+            $(this).closest("#go-dialog").css("display", "none");
+        });
+        $(".go-dialog-content").click(function(event){
+            event.stopPropagation();
+        });
     }
-    
 
 });
+
+function setGoingState(id, state){
+    var jsondata = {"Going": state};
+    var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "https://eventreminder-6487.restdb.io/rest/eventtable/" + id,
+    "method": "PUT",
+    "headers": {
+        "content-type": "application/json",
+        "x-apikey": "c22041d43b69ba2e022e2c7a2f2918f995ff7",
+        "cache-control": "no-cache"
+    },
+    "processData": false,
+    "data": JSON.stringify(jsondata)
+    }
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+    });
+
+}
