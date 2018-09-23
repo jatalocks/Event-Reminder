@@ -125,9 +125,11 @@ $(function() {
                 category: "No-Category", 
                 categoryColor: "#4286f4",
                 image: event.Image, 
-                going: false
+                going: (event.Going == "true")
             }
         }
+
+        console.log(fData);
 
         //render formatted content to page
         var rendered = new EJS({url: "events.ejs"}).render({events: fData});
@@ -153,7 +155,7 @@ $(function() {
     
             //Add Go functionality
             $go_btn = $(this).find(".btn-go");
-            $go_btn.click(function(){
+            $go_btn.click(function(){                
                 if ($(this).hasClass("btn-going")) {
                     $(this).toggleClass("btn-going btn-not-going");
                     return;
@@ -208,7 +210,7 @@ function setGoingState(id, state){
     "method": "PUT",
     "headers": {
         "content-type": "application/json",
-        "x-apikey": "c22041d43b69ba2e022e2c7a2f2918f995ff7",
+        "x-apikey": "5b63fd04b0c070454e5b8ed3",
         "cache-control": "no-cache"
     },
     "processData": false,
