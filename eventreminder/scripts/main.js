@@ -125,7 +125,7 @@ $(function() {
                 category: "No-Category", 
                 categoryColor: "#4286f4",
                 image: event.Image, 
-                going: (event.Going == "true")
+                going: (event.Going == "true") || (event.Going == true)
             }
         }
 
@@ -157,7 +157,9 @@ $(function() {
             $go_btn = $(this).find(".btn-go");
             $go_btn.click(function(){                
                 if ($(this).hasClass("btn-going")) {
+                    var id = $(this).closest(".event").attr("id");
                     $(this).toggleClass("btn-going btn-not-going");
+                    setGoingState(id, false);
                     return;
                 }
                 //open the dialog window
@@ -191,6 +193,7 @@ $(function() {
         $go_dialog.find(".btn-go").click(function(){
             //get id
             var id = $(this).closest("#go-dialog").attr("data-target");
+            setGoingState(id, true);
             $("#" + id).find(".btn-go").toggleClass("btn-going btn-not-going");
             $(this).closest("#go-dialog").css("display", "none");
         });
