@@ -27,6 +27,11 @@ body{
     background-clip: text;
     font-family: 'Times New Roman', Times, serif
 }
+.credits{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
 .btn-about{
     padding: 3px 15px;
     margin: 5px 0px;
