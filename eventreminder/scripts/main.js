@@ -1,29 +1,23 @@
 
 $(function() {
-    console.log( "Page Loaded" );
+    //set window events
+    window.onscroll = scrollEvent;
+    
+    //global vars + cach variables
+    var nEvents = 5; //the number of events to load each time.
+    var $loading = $("#loading");
+    var loadingmore = false; //flag for loading more events
 
-    //contact api (experimental)
-    var settings = {
-    "async": true,
-    "crossDomain": true,
-    url: "https://eventreminder-6487.restdb.io/rest/eventtable?q={}&max=5",
-    type: "GET",
-    "headers": {
-        "content-type": "application/json",
-        "x-apikey": "5b63fd04b0c070454e5b8ed3",
-        "cache-control": "no-cache"
-        },
-    success: loadContent,
-    complete: InitializeFunctionality
-    }
-    $.ajax(settings);
+
+    //ask for first events
+    backendQuery("eventtable?q={}&max=" + nEvents, loadContent, InitializeFunctionality);    
 
     function loadContent(data){
         console.log(data);
         
         var fData = []; //the formatted data
 
-        for (var i = 0; i < 2; i++){
+        for (var i = 0; i < 5; i++){
             console.log(data[i]);
             event = data[i];
             //find out the langues
@@ -136,8 +130,20 @@ $(function() {
         $("#events").html(rendered);
 
         //remove "loading sign"
-        $("#loading").addClass("invisible");
+        //$loading.addClass("invisible");
 
+    }
+
+    function loadMoreEvents(){
+        backendQuery("eventtable?q={}&max=" + 5 + "&skip=" + 5, 
+        function success(data){
+            console.log("success");
+            console.log(data);
+        }, 
+        function complete(){
+            console.log("complete");
+        });
+        console.log("load more events");
     }
 
     function InitializeFunctionality(){
@@ -202,26 +208,53 @@ $(function() {
         });
     }
 
-});
-
-function setGoingState(id, state){
-    var jsondata = {"Going": state};
-    var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "https://eventreminder-6487.restdb.io/rest/eventtable/" + id,
-    "method": "PUT",
-    "headers": {
-        "content-type": "application/json",
-        "x-apikey": "5b63fd04b0c070454e5b8ed3",
-        "cache-control": "no-cache"
-    },
-    "processData": false,
-    "data": JSON.stringify(jsondata)
+    function backendQuery(query, successf, completef, jsondata){
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            url: "https://eventreminder-6487.restdb.io/rest/" + query,
+            type: "GET",
+            "headers": {
+                "content-type": "application/json",
+                "x-apikey": "5b63fd04b0c070454e5b8ed3",
+                "cache-control": "no-cache"
+                },
+            success: successf,
+            complete: completef
+        }
+        $.ajax(settings);
     }
 
-    $.ajax(settings).done(function (response) {
-        console.log(response);
-    });
+    function setGoingState(id, state){
+        var jsondata = {"Going": state};
+        var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://eventreminder-6487.restdb.io/rest/eventtable/" + id,
+        "method": "PUT",
+        "headers": {
+            "content-type": "application/json",
+            "x-apikey": "5b63fd04b0c070454e5b8ed3",
+            "cache-control": "no-cache"
+        },
+        "processData": false,
+        "data": JSON.stringify(jsondata)
+        }
+    
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+        });
+    
+    }
 
-}
+    function scrollEvent(){
+        if (window.pageYOffset + window.innerHeight > $loading.offset().top){
+            //making sure this will be called only once
+            if (loadingmore) return;
+            loadingmore = true;
+            loadMoreEvents();
+        }
+    }
+});
+
+
