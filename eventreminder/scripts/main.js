@@ -7,16 +7,28 @@ $(function() {
     var nEvents = 5; //the number of events to load each time.
     var $loading = $("#loading");
     var loadingmore = false; //flag for loading more events
+    nLoaded = 0;
 
 
     //ask for first events
     backendQuery("eventtable?q={}&max=" + nEvents, loadContent, InitializeFunctionality);    
 
     function loadContent(data){
-        console.log(data);
-        
-        var fData = []; //the formatted data
+        //format data for gui
+        data = formatData(data);
 
+        //render formatted content to page
+        addEventsHtml(data);
+
+        nLoaded += 5;
+
+        //remove "loading sign"
+        //$loading.addClass("invisible");
+
+    }
+
+    function formatData(data){
+        var fData = []; 
         for (var i = 0; i < 5; i++){
             console.log(data[i]);
             event = data[i];
@@ -122,28 +134,32 @@ $(function() {
                 going: (event.Going == "true") || (event.Going == true)
             }
         }
+        return fData;
+    }
 
-        console.log(fData);
-
-        //render formatted content to page
-        var rendered = new EJS({url: "events.ejs"}).render({events: fData});
-        $("#events").html(rendered);
-
-        //remove "loading sign"
-        //$loading.addClass("invisible");
-
+    function addEventsHtml(formattedData){
+        var rendered = new EJS({url: "events.ejs"}).render({events: formattedData});
+        events = $("#events").html();
+        $("#events").html(events + rendered);
     }
 
     function loadMoreEvents(){
-        backendQuery("eventtable?q={}&max=" + 5 + "&skip=" + 5, 
+        backendQuery("eventtable?q={}&max=" + 5 + "&skip=" + nLoaded, 
         function success(data){
-            console.log("success");
-            console.log(data);
+            if (!data){
+                loadingError();
+            }
+            addEventsHtml(formatData(data));
+            //turn off "loading more" flag
+            loadingmore = false;
+            nLoaded += 5;
         }, 
         function complete(){
-            console.log("complete");
         });
-        console.log("load more events");
+    }
+
+    function loadingError(){
+        console.log("loading error");
     }
 
     function InitializeFunctionality(){
