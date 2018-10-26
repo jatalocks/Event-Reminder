@@ -11,7 +11,7 @@ The personal helper supports the following "apps":
 
 ### Event-Reminder
 
-![alt Event Reminder] (http://harshuv.com/devresume/img/eventreminder.jpg)
+![alt design](http://harshuv.com/devresume/img/eventreminder.jpg)
 
 The Event-Reminder recieves data about relevant events to ther user:
   1. Name of event
